@@ -35,4 +35,15 @@ describe('<App />', () => {
       expect(initialCounterState).toBe(0);
     });
   });
+  
+  describe('controls', () => {
+    describe('increment button', () => {
+      it('increases the number on the counter display by one', () => {
+        let incrementButton = findByTestAttr(wrapper, 'increment-button');
+        incrementButton.simulate('click');
+        const counterDisplay = findByTestAttr(wrapper, 'counter-display');
+        expect(counterDisplay.text()).toEqual('Count is currently 1');
+      });
+    });
+  });
 });
