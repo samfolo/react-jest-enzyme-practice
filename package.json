@@ -37,19 +37,21 @@
     "enzyme-adapter-react-16": "^1.15.2",
     "jest-enzyme": "^7.1.2"
   },
-  "env": {
-    "production": {
-      "plugins": [
-        [
-          "babel-plugin-jsx-remove-data-test-id",
-          {
-            "attributes": "data-test"
-          }
+  "babel": {
+    "env": {
+      "production": {
+        "plugins": [
+          [
+            "babel-plugin-jsx-remove-data-test-id",
+            {
+              "attributes": "data-test"
+            }
+          ]
         ]
-      ]
-    },
-    "test": {
-      "plugins": []
+      },
+      "test": {
+        "plugins": []
+      }
     }
   }
 }
