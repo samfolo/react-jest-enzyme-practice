@@ -1,7 +1,7 @@
 import React from 'react';
 import Enzyme, { shallow } from 'enzyme';
 import EnzymeAdapter from 'enzyme-adapter-react-16';
-import { findByTestAttr } from './testHelpers';
+import { setup, findByTestAttr } from './testHelpers';
 import App from './App';
 
 Enzyme.configure({ adapter: new EnzymeAdapter() })
@@ -11,7 +11,7 @@ describe('<App />', () => {
   let appComponent;
 
   beforeEach(() => {
-    wrapper = shallow(<App />);
+    wrapper = setup(App);
   });
   
   it('renders without crashing', () => {
@@ -27,5 +27,12 @@ describe('<App />', () => {
   it('renders a counter display', () => {
     const counterDisplay = findByTestAttr(wrapper, 'counter-display');
     expect(counterDisplay).toHaveLength(1);
+  });
+  
+  describe('counter display', () => {
+    it('starts at zero', () => {
+      const initialCounterState = wrapper.state('counter');
+      expect(initialCounterState).toBe(0);
+    });
   });
 });
