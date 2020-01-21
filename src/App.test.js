@@ -10,3 +10,25 @@ it('renders without crashing', () => {
   const appComponent = wrapper.find("[data-test='component-app']"); 
   expect(appComponent ).toHaveLength(1);
 });
+
+it('renders an increment button', () => {
+
+});
+
+it('renders a counter display', () => {
+
+});
+
+describe('counter display', () => {
+  it('starts at zero', () => {
+
+  });
+});
+
+describe('controls', () => {
+  describe('increment button', () => {
+    it('increases the number on the counter display by one', () => {
+
+    });
+  });
+});
