@@ -45,5 +45,39 @@ describe('<App />', () => {
         expect(counterDisplay.text()).toEqual('Count is currently 1');
       });
     });
+
+    describe('decrement button', () => {
+      it('decreases the number on the counter display by one', () => {
+        const counter = 6;
+        wrapper = setup(App, {}, { counter });
+
+        let decrementButton = findByTestAttr(wrapper, 'decrement-button');
+        decrementButton.simulate('click');
+
+        const counterDisplay = findByTestAttr(wrapper, 'counter-display');
+        expect(counterDisplay.text()).toEqual('Count is currently 5');
+      });
+
+      it('renders an error message if the counter is at 0 before being clicked', () => {
+        const counter = 0;
+        const decrementButton =findByTestAttr(wrapper, 'decrement-button');
+        decrementButton.simulate('click');
+
+        const counterDisplay = findByTestAttr(wrapper, 'counter-display');
+        expect(counterDisplay.text()).toEqual('Count is currently 0');
+        expect(wrapper.text()).toContain('Cannot go below zero.');
+      });
+    });
+
+    describe('error message', () => {
+      it('is removed once the increment button is clicked', () => {
+        wrapper = setup(App, {}, { counter: 0, error: true, });
+
+        const incrementButton =findByTestAttr(wrapper, 'increment-button');
+        incrementButton.simulate('click');
+        
+        expect(wrapper.text()).not.toContain('Cannot go below zero.');
+      });
+    });
   });
 });
